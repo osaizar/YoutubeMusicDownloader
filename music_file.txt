@@ -1,0 +1,12 @@
+# Syntax:
+# Author::
+# Song1
+# Song2
+# ...
+#
+# Example:
+# glaukoma::
+# haizea
+# itzali
+#
+# You can use ?:: if you don't know the author.
