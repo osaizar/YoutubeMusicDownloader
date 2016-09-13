@@ -1,7 +1,8 @@
 #!/usr/bin/python
 
 # Author: @osaizar
-# Dependencies: pafy, BeautifulSoup, pydub (just pip install them)
+# Dependencies: pafy, BeautifulSoup, pydub, youtube-dl (just pip install them)
+# zip (apt install zip) only for ziping the dir, the program can work with out.
 
 import pafy
 import os
@@ -71,43 +72,63 @@ def zip_dir():
     print "ziping directory..."
     os.system("zip "+OUTPUT_DIR[:-1]+".zip "+OUTPUT_DIR[:-1]+" -rm")
     print "complete!  \n"
+    
+def shell():
+    exit = False
+    while not exit:
+        cmd = raw_input("shell>")
+        
+        if cmd == "exit":
+            exit = True
+            print("Bye!")
+        elif cmd[0:6] == "search":
+            arg = cmd.split(" ")
+            print("You typed search "+arg[1])
+        else:
+            print("'"+cmd+"' not found.")
 
 def parse_args():
 
-    parser = optparse.OptionParser('Usage [-f <Music file>][-r] ')
+    parser = optparse.OptionParser('Usage [-f <Music file>][-z][-s]')
 
     parser.add_option('-f', dest='file', type='string', \
                         help='music file')
     parser.add_option('-z', dest='rar', action="store_true", \
                         help='Makes a zip file for the output')
+    parser.add_option('-s', dest='shell', action="store_true", \
+                        help='Displays a shell')
 
     (options, args) = parser.parse_args()
 
     file = options.file
     rar = options.rar
-
+    shell = options.shell
+    
     if file == None:
         file = FILE
     if rar == None:
         rar = RAR
 
-    return rar, file
+    return rar, file, shell
 
 
 def main():
-    (RAR, FILE) = parse_args()
-    parse_file()
-    make_dirs()
-    song_n = len(songs)
+    (RAR, FILE, SHELL) = parse_args()
+    if SHELL:
+        shell()
+    else:
+        parse_file()
+        make_dirs()
+        song_n = len(songs)
 
-    for i, song in enumerate(songs):
-        print str(i)+"/"+str(song_n)+" ["+str((i*100)/song_n)+"%] "+song
-        url = get_link(song)
-        audio = get_audio(url)
-        download_mp3(audio, song)
+        for i, song in enumerate(songs):
+            print str(i)+"/"+str(song_n)+" ["+str((i*100)/song_n)+"%] "+song
+            url = get_link(song)
+            audio = get_audio(url)
+            download_mp3(audio, song)
 
-    if RAR:
-        zip_dir()
+        if RAR:
+            zip_dir()
 
 if __name__ == '__main__':
     main()
