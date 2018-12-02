@@ -1,0 +1,5 @@
+pafi
+youtube_dl
+bs4
+pydub
+lxml
