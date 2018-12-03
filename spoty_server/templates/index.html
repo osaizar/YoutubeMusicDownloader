@@ -9,15 +9,23 @@
 <body>
 
   <div class="container">
-    <div class="card card-container">
-      <div id="notoken" style="display:none">
-        <h4>Ez zaude autentifikatuta:</h4>
-        <a href={{link}}> Klikatu hemen </a>
+    <div id="notoken" style="display:none">
+      <div class="jumbotron">
+        <h3>Jarraitzeko logeatu mesedez:</h3>
+        <p><a class="btn btn-primary btn-lg" href="{{link}}" role="button">Klikatu Hemen</a></p>
       </div>
-      <div id="token" style="display:none">
-        <h4> Autentifikatuta zaude </h4>
+    </div>
+
+
+    <div id="yestoken" style="display:none">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Aukeratu playlistak: </h4>
+          <div id="playlistSel"></div>
+          <button class="btn btn-info" onclick="sendPlaylist()">Ados!</button>
+        </div>
       </div>
-    </div><!-- /card-container -->
+    </div>
   </div><!-- /container -->
 
   <script src="/lib/bootstrap/js/bootstrap.js"></script>

@@ -39,6 +39,15 @@ def auth():
         print tb
         return render_template("error.html", code=500, message="Errorea zerbitzarian"), 500
 
+@app.route("/get_playlists", methods=["GET"])
+def get_playlists():
+    try:
+        return jsonify([{"name" : "lista 1", "url" : "url1"}, {"name" : "lista 2", "url" : "url2"}, {"name" : "lista 3", "url" : "url3"}]), 200
+    except Exception, e:
+        tb = traceback.format_exc()
+        print tb
+        return render_template("error.html", code=500, message="Errorea zerbitzarian"), 500
+
 # Static Routes
 @app.route("/lib/bootstrap/css/bootstrap.css")
 def bootstrapCSS():
