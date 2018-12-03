@@ -1,0 +1,34 @@
+/*
+ * Specific styles of signin component
+ */
+/*
+ * General styles
+ */
+body, html {
+    height: 100%;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+}
+
+.container {
+  position:fixed;
+  top: 40%;
+  left: 50%;
+  width: 22em;
+  height: 32em;
+  margin-top: -18em; /*set to a negative number 1/2 of your height*/
+  margin-left: -11em; /*set to a negative number 1/2 of your width*/
+}
+
+.card{
+  padding: 1em;
+}
+
+.profile-img-card {
+    width: 7em;
+    height: 7em;
+    margin: 0 auto 1em;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+}
