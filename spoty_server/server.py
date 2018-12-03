@@ -65,9 +65,9 @@ def clientCSS():
 def clientJS():
     return app.send_static_file("js/client.js")
 
-@app.route("/js/index.js")
-def indexJS():
-    return app.send_static_file("js/index.js")
+@app.route("/js/main.js")
+def mainJS():
+    return app.send_static_file("js/main.js")
 
 if __name__ == '__main__':
     AUTH = SpotifyOAuth(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, scope=SCOPE)
