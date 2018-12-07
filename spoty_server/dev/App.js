@@ -1,26 +1,40 @@
 import React, { Component } from 'react';
+import { instanceOf } from 'prop-types';
+import { withCookies, Cookies } from 'react-cookie';
+import Login from './components/Login.js';
+import PlaylistSelect from './components/PlaylistSelect.js';
 import './css/App.css';
 
 class App extends Component {
+  static propTypes = {
+    cookies : instanceOf(Cookies).isRequired
+  }
+
+  constructor(props){
+    super(props);
+
+    const {cookies} = props;
+
+    this.state = {
+      token : cookies.get("authtoken") || false
+    };
+  }
+
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+    if (this.state.token){
+      return (
+        <div className="App">
+          <PlaylistSelect/>
+        </div>
+      );
+    }else{
+      return (
+        <div className="App">
+          <Login/>
+        </div>
+      );
+    }
   }
 }
 
-export default App;
+export default withCookies(App);

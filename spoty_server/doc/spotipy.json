@@ -1,0 +1,31 @@
+playlist : {
+  'name': 'GBL',
+  'collaborative': False,
+  'external_urls': {
+    'spotify': 'https://open.spotify.com/playlist/25Adap8V57ZIKn2TZbM6Qr'
+  },
+  'uri': 'spotify:user:oierlas:playlist:25Adap8V57ZIKn2TZbM6Qr',
+  'public': True,
+  'owner': {
+    'display_name': 'Oier Saizar',
+    'external_urls': {
+      'spotify': 'https://open.spotify.com/user/oierlas'
+    },
+    'uri': 'spotify:user:oierlas',
+    'href': 'https://api.spotify.com/v1/users/oierlas',
+    'type': 'user',
+    'id': 'oierlas'
+    },
+  'tracks': {
+    'total': 77,
+    'href': 'https://api.spotify.com/v1/playlists/25Adap8V57ZIKn2TZbM6Qr/tracks'
+  },
+  'href': 'https://api.spotify.com/v1/playlists/25Adap8V57ZIKn2TZbM6Qr',
+  'snapshot_id': 'MTAwLDE2ZjBkNzVhNTEwMjdiNWMzNjg0NmE1MmIwNDIwZTRjZTY3NDdlZWY=',
+  'images': [
+    {'url': 'https://pl.scdn.co/images/pl/default/70fc94f5d419d2d233cde2bbfd0293ac01daca9b', 'width': None, 'height': None}
+  ],
+  'primary_color': None,
+  'type': 'playlist',
+  'id': '25Adap8V57ZIKn2TZbM6Qr'
+}

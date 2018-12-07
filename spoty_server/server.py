@@ -21,7 +21,7 @@ SCOPE = 'user-library-read'
 AUTH = None
 @app.route("/")
 def index():
-    return render_template("index.html", link=AUTH.get_authorize_url()), 200
+    return render_template("index.html"), 200
 
 @app.route("/auth")
 def auth():
@@ -39,10 +39,51 @@ def auth():
         print tb
         return render_template("error.html", code=500, message="Errorea zerbitzarian"), 500
 
-@app.route("/get_playlists", methods=["GET"])
-def get_playlists():
+
+# REST Routes
+
+@app.route("/get_login_url", methods=["GET"])
+def get_login_url():
     try:
-        return jsonify([{"name" : "lista 1", "url" : "url1"}, {"name" : "lista 2", "url" : "url2"}, {"name" : "lista 3", "url" : "url3"}]), 200
+        return jsonify({"url" : AUTH.get_authorize_url()}), 200
+    except Exception, e:
+        tb = traceback.format_exc()
+        print tb
+        return jsonify({"error" : "Errorea zerbitzarian"}), 500
+
+@app.route("/get_playlists", methods=["POST"])
+def get_playlists(): # input: username
+    try:
+        data = request.get_json(silent = True)
+        if 'authtoken' not in request.cookies: # TODO: validator.py
+            return jsonify({"error" : "Txokolatezko gaileta falta da"}), 400
+
+        token = request.cookies["authtoken"]
+
+        list =  []
+        sp = spotipy.Spotify(auth=token)
+        playlists = sp.user_playlists(data["username"])
+
+        for playlist in playlists['items']:
+            list.append({"name" : playlist["name"], "id" : playlist["id"], "owner" : playlist["owner"]["id"]})
+            print str(playlist)
+
+        return jsonify({"message" : "success", "playlists" : list}), 200
+    except Exception, e:
+        tb = traceback.format_exc()
+        print tb
+        return jsonify({"error" : "Errorea zerbitzarian"}), 500
+
+@app.route("/download_playlist", methods=["POST"])
+def download_playlist():
+    try:
+        data = request.get_json(silent = True)
+        data["playlist_id"]
+
+        if 'authtoken' not in request.cookies:
+            return render_template("error.html", code=500, message="Txokolatezko gaileta falta da"), 400
+
+
     except Exception, e:
         tb = traceback.format_exc()
         print tb
