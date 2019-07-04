@@ -1,4 +1,4 @@
-pafi
+pafy
 youtube_dl
 bs4
 pydub
